@@ -18,8 +18,22 @@ from django.contrib import admin
 from django.urls import path
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
+from neoviso_be import views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('token', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh', TokenRefreshView.as_view(), name='token_refresh'),
+    path('customers', views.CustomerView.as_view(http_method_names=['post', 'get'])),
+    path('customers/<int:id>', views.CustomerView.as_view(http_method_names=['put', 'delete', 'get'])),
+    path('customers/list', views.CustomerListView.as_view(http_method_names=['get'])),
+    path('departments', views.DepartmentView.as_view(http_method_names=['post'])),
+    path('departments/<int:id>', views.DepartmentView.as_view(http_method_names=['put', 'delete', 'get'])),
+    path('departments/list', views.DepartmentListView.as_view(http_method_names=['get'])),
+    path('appointments', views.AppointmentView.as_view(http_method_names=['post'])),
+    path('appointments/<int:id>', views.AppointmentView.as_view(http_method_names=['put', 'delete', 'get'])),
+    path('appointments/list', views.AppointmentListView.as_view(http_method_names=['get'])),
+    path('employees', views.EmployeeView.as_view(http_method_names=['post'])),
+    path('employees/<int:id>', views.EmployeeView.as_view(http_method_names=['put', 'delete', 'get'])),
+    path('employees/list', views.EmployeeListView.as_view(http_method_names=['get'])),
 ]
